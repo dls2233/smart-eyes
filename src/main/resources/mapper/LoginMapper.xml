@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="">
+<mapper namespace="com.example.smarteyes.mapper.LoginMapper">
 
+    <select id="selectUserByName" resultType="com.example.smarteyes.domain.pojo.User">
+        SELECT name AS userName,
+               password AS passWord
+        FROM user WHERE name = #{userName}
+    </select>
 </mapper>
