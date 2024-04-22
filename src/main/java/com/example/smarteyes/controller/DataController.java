@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
  * @description DataController
  */
 @RestController
+@CrossOrigin //所有域名均可访问该类下所有接口
 @RequestMapping("/data")
 public class DataController {
     @Autowired
