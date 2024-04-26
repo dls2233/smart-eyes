@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.smarteyes.mapper.DataMapper">
 
+    <insert id="insertDatas">
+        INSERT INTO data (timestamp, message, service) VALUES (#{timestamp}, #{message}, #{service})
+    </insert>
+
 
     <select id="getData" resultType="com.example.smarteyes.domain.pojo.result">
         SELECT id AS id,
@@ -26,5 +30,8 @@
                score AS score
         FROM result
         WHERE id = #{id}
+    </select>
+    <select id="getDataView" resultType="com.example.smarteyes.domain.dto.DataVo">
+        SELECT * FROM data ORDER BY timestamp;
     </select>
 </mapper>

@@ -73,11 +73,13 @@ public class DataController {
             while(true){
                 String str = dataMapper.selectId(num);
                 if(already.contains(str)){
-                    num++;
-                    redisCache.setCacheObject("num", num);
+                    redisCache.setCacheObject("num", num++);
                 }else{
                     already.add(str);
+                    redisCache.setCacheObject("num", num++);
+                    redisCache.deleteObject("already");
                     redisCache.setCacheList("already", already);
+                    System.out.println(str);
                     return Result.success(dataMapper.selectall(str));
                 }
             }
@@ -103,5 +105,10 @@ public class DataController {
         }
         System.out.println(map);
         return Result.success("操作成功",dataList);
+    }
+
+    @GetMapping("/view")
+    public Result dataView(){
+        return Result.success(dataMapper.getDataView());
     }
 }
